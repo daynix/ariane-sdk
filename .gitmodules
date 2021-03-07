@@ -24,3 +24,7 @@
 [submodule "vitetris"]
 	path = vitetris
 	url = https://github.com/pulp-platform/vitetris.git
+
+[submodule "opensbi"]
+	path = opensbi
+	url = git@github.com:daynix/opensbi.git
