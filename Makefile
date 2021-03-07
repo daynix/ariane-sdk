@@ -104,6 +104,10 @@ vmlinux: $(buildroot_defconfig) $(linux_defconfig) $(busybox_defconfig) $(RISCV)
 	make -C buildroot
 	cp buildroot/output/images/vmlinux build/vmlinux
 	cp build/vmlinux vmlinux
+	riscv64-linux-gnu-objcopy -S -O binary vmlinux vmlinux.bin
+	cp vmlinux.bin ./opensbi/ariane-vmlinux.bin
+	./opensbi/make-fpga.sh
+	./opensbi/make-vm-busybox.sh
 
 bbl: vmlinux
 	cd build && ../riscv-pk/configure --host=riscv64-unknown-elf CC=riscv64-unknown-linux-gnu-gcc OBJDUMP=riscv64-unknown-linux-gnu-objdump --with-payload=vmlinux --enable-logo --with-logo=../configs/logo.txt
