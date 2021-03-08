@@ -7,7 +7,8 @@ umask 077
 
 start() {
 	mkdir /root/sd
-	mount /dev/mmcblk0p2 /root/sd
+	if [ -e /dev/mmcblk0p2 ]; then mount /dev/mmcblk0p2 /root/sd ; fi
+	if [ -e /dev/piton_sd2 ]; then mount /dev/piton_sd2 /root/sd ; fi
 }
 
 stop() {
