@@ -6,7 +6,8 @@
 umask 077
 
 start() {
-	ifconfig eth0 hw ether 00:18:3E:02:E3:7F
+	if [ -e /sys/bus/virtio/devices/virtio0/vendor ]; then echo "Not changing MAC for eth0";
+	else ifconfig eth0 hw ether 00:18:3E:02:E3:7F; fi
 	chown root:root /etc/ssh/ssh_host_*
 	chmod 600 /etc/ssh/ssh_host_*key
 }
