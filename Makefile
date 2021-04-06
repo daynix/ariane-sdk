@@ -105,6 +105,8 @@ vmlinux: $(buildroot_defconfig) $(linux_defconfig) $(busybox_defconfig) $(RISCV)
 	cp buildroot/output/images/vmlinux build/vmlinux
 	cp build/vmlinux vmlinux
 	riscv64-linux-gnu-objcopy -S -O binary vmlinux vmlinux.bin
+
+sbi:
 	cp vmlinux.bin ./opensbi/ariane-vmlinux.bin
 	./opensbi/make-fpga.sh
 	./opensbi/make-vm-busybox.sh
